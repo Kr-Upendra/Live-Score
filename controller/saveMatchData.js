@@ -25,3 +25,20 @@ const refreshApiData = async () => {
 setInterval(refreshApiData, 60 * 60 * 1000);
 
 // refreshApiData();
+
+exports.saveIntoFile = async (req, res) => {
+  try {
+    const data = fs.readFileSync(filePath);
+    const matchData = JSON.parse(data);
+
+    res.status(200).json({
+      status: "success 😎",
+      data: matchData,
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: "ERROR 🔥",
+      error: error,
+    });
+  }
+};
