@@ -57,6 +57,10 @@
   color: var(--whiteClr);
 }
 
+.match:hover {
+  box-shadow: rgb(31, 48, 66) 0px 20px 30px -10px;
+}
+
 .match__details {
   display: flex;
   justify-content: space-between;
