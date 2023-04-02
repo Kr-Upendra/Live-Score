@@ -1,0 +1,28 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title= title
+        link(rel='stylesheet', href='/CSS/index.css')
+        link(rel='stylesheet', href='/CSS/App.css')
+        link(rel='stylesheet', href='/CSS/responsive.css')
+        link(rel='shortcut icon', href='/img/favicon.ico', type='image/x-icon')
+    body
+        nav.navbar
+            h3 LiveScore
+        .container
+            .about__container
+                h3 Catch Live IPL Action
+                p
+                | Yeah, This is the place where you can catch all the action and live
+                | score of IPL matches.
+            section.main
+                main.content
+                    include match
+                main.news
+                    span news will go here..
+        include footer
+    script(src="/script.js") 
+

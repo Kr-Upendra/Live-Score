@@ -1,0 +1,135 @@
+.navbar {
+  text-align: center;
+  padding: 0.25rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid var(--borderClr);
+  box-shadow: 0 4px 8px 0 #ffffff0d;
+  background-color: var(--backgroundClr);
+  z-index: 100;
+}
+
+.navbar a {
+  color: var(--whiteClr);
+  display: inline-block;
+}
+
+.navbar h4 {
+  font-family: var(--headingFont);
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: 3px;
+}
+
+.container {
+  padding: 5rem 2rem 3rem;
+}
+
+.about__container {
+  margin: 1.5rem 0 2rem;
+}
+
+.about__container p {
+  font-size: 1.1rem;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 2rem;
+}
+
+.content {
+  grid-area: 1 / span 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.match {
+  line-height: 1.5;
+  padding: 0.55rem;
+  border-radius: 0.35rem;
+  border: 1px solid var(--borderClr);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  color: var(--whiteClr);
+}
+
+.match__details {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.35rem 0 0.5rem;
+}
+
+.match__details > span {
+  font-size: 0.8rem;
+}
+
+.team__img {
+  display: grid;
+  place-content: center;
+  margin-right: 0.5rem;
+}
+
+.team__img img {
+  width: 30px;
+  border-radius: 50%;
+}
+
+.team__1,
+.team__2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.65rem;
+}
+
+.teamname {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.match__status {
+  font-size: 0.85rem;
+}
+
+.footer {
+  border-top: 1px solid var(--borderClr);
+  height: 30vh;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.about__footer span {
+  font-size: 0.75rem;
+}
+
+.rights {
+  margin-top: 1.5rem;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+}
+
+.isStart {
+  display: flex;
+  align-items: center;
+}
+
+.isStart[data-finish="finished"] .dot {
+  background-color: #920202;
+}
+
+.isStart[data-live="lived"] .dot {
+  background-color: #008000;
+}
+
+.isStart[data-upcoming="notstarted"] .dot {
+  background-color: #b9b900;
+}

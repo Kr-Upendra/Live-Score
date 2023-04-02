@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Pacifico&display=swap");
+
+:root {
+  --backgroundClr: #141414;
+  --fontNunito: "Nunito", sans-serif;
+  --headingFont: "Pacifico", cursive;
+  --whiteClr: #ffffffb7;
+  --borderClr: #ffffff23;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-weight: 500;
+  text-decoration: none;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--fontNunito);
+  width: 100%;
+  background-color: var(--backgroundClr);
+  color: var(--whiteClr);
+  position: relative;
+}
+
+h1,
+h3,
+h2,
+h4,
+h5,
+h6 {
+  font-size: 2rem;
+  line-height: 1.5;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--backgroundClr);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9b9b9b88;
+  border-radius: 10px;
+}
