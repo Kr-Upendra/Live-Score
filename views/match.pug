@@ -10,6 +10,10 @@ each val in data
                     span.isStart(data-finish="finished")
                         .dot
                         | Finished 
+                else if liveMatchStatus.includes("opt")
+                    span.isStart(data-live="lived")
+                        .dot 
+                        | Live
                 else 
                     span.isStart(data-upcoming="notstarted")
                         .dot
@@ -22,9 +26,9 @@ each val in data
                     span Yet to start
             .team__2
                 .team__img
-                    img(src=val.teamInfo[1].img, alt=val.teamInfo[0].shortname)
+                    img(src=val.teamInfo[1].img, alt=val.teamInfo[1].shortname)
                 .teamname
-                    span= val.teamInfo[0].shortname
+                    span= val.teamInfo[1].shortname
                     span Yet to start
             .match__status
                 span= val.status

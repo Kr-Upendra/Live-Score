@@ -137,3 +137,36 @@
 .isStart[data-upcoming="notstarted"] .dot {
   background-color: #b9b900;
 }
+
+.btn__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 2rem;
+  gap: 2rem;
+}
+
+.btns__list {
+  grid-area: 1 / span 2;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.link {
+  padding: 0.55rem 0;
+  color: var(--whietClr);
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+
+.link:hover,
+.active {
+  border-bottom: 2px solid var(--borderClr);
+  color: red;
+}
+
+::selection {
+  background-color: rgba(128, 128, 128, 0.288);
+  color: rgb(255, 34, 34);
+}

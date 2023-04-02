@@ -6,10 +6,21 @@
   .content {
     margin-bottom: 2.5rem;
   }
+
+  .btn__container {
+    width: 100%;
+  }
+
+  .btns__list {
+    grid-area: 1 / span 3;
+  }
 }
 
 @media (max-width: 600px) {
   .content {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .btns__list {
+    font-size: 0.85rem;
   }
 }

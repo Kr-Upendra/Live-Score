@@ -1,9 +1,9 @@
-// const isStart = document.querySelectorAll(".isStart").innerHTML;
-// const isStartDot = document.querySelectorAll(".dot");
+const btns = document.querySelectorAll(".link");
 
-// for (const val of isStart) {
-//   if (val === "Live")
-//     for ()
-//   else if (val === "Upcoming") isStartDot.style.backgroundColor = "yellow";
-//   else isStartDot.style.backgroundColor = "red";
-// }
+for (let i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function () {
+    let current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
