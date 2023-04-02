@@ -1,0 +1,11 @@
+.container {
+  padding: 5rem 2rem 3rem;
+}
+
+.about__container {
+  margin: 1.5rem 0 2rem;
+}
+
+.about__container p {
+  font-size: 1.1rem;
+}

@@ -1,0 +1,14 @@
+.footer {
+  border-top: 1px solid var(--borderClr);
+  height: 30vh;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.about__footer span {
+  font-size: 0.75rem;
+}
+
+.rights {
+  margin-top: 1.5rem;
+}

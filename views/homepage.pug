@@ -1,0 +1,14 @@
+doctype html
+html(lang='en')
+    include partials/homepageHead
+    body
+        include partials/navbar 
+        .container
+            .about__container
+                h3 Get all cricket action at one place
+                p A place where you can get all cricketing live score in just seconds.
+        section.section
+            .cards
+                include seriesList
+        
+        include partials/footer

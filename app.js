@@ -11,9 +11,8 @@ app.use(express.static("public"));
 app.set("view engine", "pug");
 
 app.get("/", (req, res) => {
-  res.status(200).json({
-    status: "success",
-    message: "server started successfully!",
+  res.status(200).render("homepage", {
+    title: "Livescore | Homepage",
   });
 });
 
