@@ -1,6 +1,7 @@
 const fs = require("fs");
 
-const doSomeWork = (matches) => {
+const doSomeWork = () => {
+  const matches = fs.readFileSync("matchdata/matchdata.json");
   const response = JSON.parse(matches);
   const matchData = response.data.matchList;
   matchData.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -9,24 +10,23 @@ const doSomeWork = (matches) => {
 
 exports.getAllmatches = async (req, res) => {
   try {
-    const matches = fs.readFileSync("matchdata/matchdata.json");
-    const matchData = doSomeWork(matches);
+    const matchData = doSomeWork();
     res.status(200).render("matchList", {
       title: "LiveScore - IPL all matches list",
       data: matchData,
       link: "",
+      matchlist: "All Match List",
     });
   } catch (err) {
     res.status(404).json({
-      status: "success",
+      status: "Error",
       error: err,
     });
   }
 };
 
 exports.getUpcomingMatches = (req, res) => {
-  const matches = fs.readFileSync("matchdata/matchdata.json");
-  const allMatchList = doSomeWork(matches); // Calling function which parse and sort the upcoming data from api which is saved into file
+  const allMatchList = doSomeWork(); // Calling function which parse and sort the upcoming data from api which is saved into file
   const upcomingMatchList = [];
   for (let i = 0; i < allMatchList.length; i++) {
     if (allMatchList[i].status === "Match not started")
@@ -36,6 +36,7 @@ exports.getUpcomingMatches = (req, res) => {
     res.status(200).render("upcoming", {
       title: "IPL Livescore | Get all ipl upcoming matches",
       data: upcomingMatchList,
+      matchlist: "Upcoming Match List",
     });
   } catch (error) {
     res.status(404).json({
@@ -46,8 +47,7 @@ exports.getUpcomingMatches = (req, res) => {
 };
 
 exports.getLiveMatches = (req, res) => {
-  const matches = fs.readFileSync("matchdata/matchdata.json");
-  const allMatchList = doSomeWork(matches);
+  const allMatchList = doSomeWork();
   const liveMatchList = [];
   for (let i = 0; i < allMatchList.length; i++) {
     if (
@@ -60,6 +60,7 @@ exports.getLiveMatches = (req, res) => {
     res.status(200).render("upcoming", {
       title: "IPL Livescore | Get all ipl live matches",
       data: liveMatchList,
+      matchlist: "Live Match List",
     });
   } catch (error) {
     res.status(404).json({
@@ -70,8 +71,7 @@ exports.getLiveMatches = (req, res) => {
 };
 
 exports.getFinishedMatches = (req, res) => {
-  const matches = fs.readFileSync("matchdata/matchdata.json");
-  const allMatchList = doSomeWork(matches);
+  const allMatchList = doSomeWork();
   const finishedMatchList = [];
   for (let i = 0; i < allMatchList.length; i++) {
     if (allMatchList[i].status.includes("won"))
@@ -81,6 +81,7 @@ exports.getFinishedMatches = (req, res) => {
     res.status(200).render("upcoming", {
       title: "IPL Livescore | Get all ipl finished matches",
       data: finishedMatchList,
+      matchlist: "Finished Match List",
     });
   } catch (error) {
     res.status(404).json({

@@ -118,3 +118,7 @@
   background-color: rgba(128, 128, 128, 0.288);
   color: rgb(255, 34, 34);
 }
+
+.list__name {
+  margin-bottom: 1rem;
+}

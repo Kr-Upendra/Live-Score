@@ -3,7 +3,7 @@ each val in data
         .match
             .match__details
                 - var matchNumber = val.name.slice(val.name.length - 10, val.name.length)
-                span.match__num=`IPL ${val.matchType} ${matchNumber}`
+                span.match__num=`IPL ${val.matchType.toUpperCase()}, ${matchNumber}`
                 span.date= val.date
                 - var liveMatchStatus = val.status 
                 if liveMatchStatus.includes("won") 
