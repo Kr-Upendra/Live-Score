@@ -12,7 +12,6 @@ const refreshApiData = async () => {
   try {
     const response = await axios.get(baseUrl);
     const matchData = response.data;
-
     fs.mkdirSync(folderPath, { recursive: true });
     fs.writeFileSync(filePath, JSON.stringify(matchData));
 

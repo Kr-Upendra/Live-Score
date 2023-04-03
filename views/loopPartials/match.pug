@@ -14,6 +14,10 @@ each val in data
                     span.isStart(data-live="lived")
                         .dot 
                         | Live
+                else if liveMatchStatus.includes("need")
+                    span.isStart(data-live="lived")
+                        .dot 
+                        | Live
                 else 
                     span.isStart(data-upcoming="notstarted")
                         .dot

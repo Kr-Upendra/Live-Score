@@ -1,10 +1,16 @@
 const fs = require("fs");
 
+const doSomeWork = (matches) => {
+  const response = JSON.parse(matches);
+  const matchData = response.data.matchList;
+  matchData.sort((a, b) => new Date(a.date) - new Date(b.date));
+  return matchData;
+};
+
 exports.getAllmatches = async (req, res) => {
   try {
     const matches = fs.readFileSync("matchdata/matchdata.json");
-    const response = JSON.parse(matches);
-    const matchData = response.data.matchList;
+    const matchData = doSomeWork(matches);
     res.status(200).render("matchList", {
       title: "LiveScore - IPL all matches list",
       data: matchData,
@@ -20,8 +26,7 @@ exports.getAllmatches = async (req, res) => {
 
 exports.getUpcomingMatches = (req, res) => {
   const matches = fs.readFileSync("matchdata/matchdata.json");
-  const response = JSON.parse(matches);
-  const allMatchList = response.data.matchList;
+  const allMatchList = doSomeWork(matches); // Calling function which parse and sort the upcoming data from api which is saved into file
   const upcomingMatchList = [];
   for (let i = 0; i < allMatchList.length; i++) {
     if (allMatchList[i].status === "Match not started")
@@ -42,11 +47,13 @@ exports.getUpcomingMatches = (req, res) => {
 
 exports.getLiveMatches = (req, res) => {
   const matches = fs.readFileSync("matchdata/matchdata.json");
-  const response = JSON.parse(matches);
-  const allMatchList = response.data.matchList;
+  const allMatchList = doSomeWork(matches);
   const liveMatchList = [];
   for (let i = 0; i < allMatchList.length; i++) {
-    if (allMatchList[i].status.includes("opt"))
+    if (
+      allMatchList[i].status.includes("opt") ||
+      allMatchList[i].status.includes("need")
+    )
       liveMatchList.push(allMatchList[i]);
   }
   try {
@@ -64,8 +71,7 @@ exports.getLiveMatches = (req, res) => {
 
 exports.getFinishedMatches = (req, res) => {
   const matches = fs.readFileSync("matchdata/matchdata.json");
-  const response = JSON.parse(matches);
-  const allMatchList = response.data.matchList;
+  const allMatchList = doSomeWork(matches);
   const finishedMatchList = [];
   for (let i = 0; i < allMatchList.length; i++) {
     if (allMatchList[i].status.includes("won"))
