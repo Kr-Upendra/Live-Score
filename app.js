@@ -18,4 +18,10 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/", matchRoutes);
 
+app.all("*", (req, res) => {
+  res.status(400).json({
+    message: "This route does not exist on this site",
+  });
+});
+
 module.exports = app;

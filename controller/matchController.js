@@ -8,7 +8,7 @@ exports.getAllmatches = async (req, res) => {
     res.status(200).render("matchList", {
       title: "LiveScore - IPL all matches list",
       data: matchData,
-      link: ""
+      link: "",
     });
   } catch (err) {
     res.status(404).json({
@@ -16,4 +16,22 @@ exports.getAllmatches = async (req, res) => {
       error: err,
     });
   }
+};
+
+exports.getUpcomingMatches = (req, res) => {
+  res.status(200).render("upcoming", {
+    title: "IPL Livescore | Get all ipl upcoming matches",
+  });
+};
+
+exports.getLiveMatches = (req, res) => {
+  res.status(200).render("live", {
+    title: "IPL Livescore | live Mathces",
+  });
+};
+
+exports.getFinishedMatches = (req, res) => {
+  res.status(200).render("finished", {
+    title: "IPL Livescore | Get all ipl upcoming matches",
+  });
 };
