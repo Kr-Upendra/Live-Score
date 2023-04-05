@@ -1,4 +1,7 @@
+const axios = require("axios");
 const fs = require("fs");
+const baseUrl = "https://api.cricapi.com/v1/";
+const apiKey = process.env.APIKEY;
 
 const doSomeWork = () => {
   const matches = fs.readFileSync("matchdata/matchdata.json");
@@ -10,7 +13,16 @@ const doSomeWork = () => {
 
 exports.getAllmatches = async (req, res) => {
   try {
-    const matchData = doSomeWork();
+    const matchData = await doSomeWork(); // MatchData is getting an array of objects.
+
+    const scoreCard = [];
+    for (let i = 0; i < matchData.length; i++) {
+      const matchInfoUrl = `${baseUrl}match_info?apikey=${apiKey}&offset=0&id=${matchData[i].id}`;
+      const response = await axios.get(matchInfoUrl);
+      scoreCard.push(response.data.data);
+    }
+    console.log(scoreCard);
+
     res.status(200).render("matchList", {
       title: "LiveScore - IPL all matches list",
       data: matchData,
@@ -26,7 +38,7 @@ exports.getAllmatches = async (req, res) => {
 };
 
 exports.getUpcomingMatches = (req, res) => {
-  const allMatchList = doSomeWork(); // Calling function which parse and sort the upcoming data from api which is saved into file
+  const allMatchList = doSomeWork();
   const upcomingMatchList = [];
   for (let i = 0; i < allMatchList.length; i++) {
     if (allMatchList[i].status === "Match not started")
@@ -70,13 +82,14 @@ exports.getLiveMatches = (req, res) => {
   }
 };
 
-exports.getFinishedMatches = (req, res) => {
+exports.getFinishedMatches = async (req, res) => {
   const allMatchList = doSomeWork();
   const finishedMatchList = [];
   for (let i = 0; i < allMatchList.length; i++) {
     if (allMatchList[i].status.includes("won"))
       finishedMatchList.push(allMatchList[i]);
   }
+
   try {
     res.status(200).render("upcoming", {
       title: "IPL Livescore | Get all ipl finished matches",
