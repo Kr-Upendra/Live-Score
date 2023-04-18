@@ -1,7 +1,4 @@
-const axios = require("axios");
 const fs = require("fs");
-const baseUrl = "https://api.cricapi.com/v1/";
-const apiKey = process.env.APIKEY;
 
 const doSomeWork = () => {
   const matches = fs.readFileSync("matchdata/matchdata.json");
@@ -15,19 +12,10 @@ exports.getAllmatches = async (req, res) => {
   try {
     const matchData = await doSomeWork(); // MatchData is getting an array of objects.
 
-    const scoreCard = [];
-    for (let i = 0; i < matchData.length; i++) {
-      const matchInfoUrl = `${baseUrl}match_info?apikey=${apiKey}&offset=0&id=${matchData[i].id}`;
-      const response = await axios.get(matchInfoUrl);
-      scoreCard.push(response.data.data);
-    }
-    console.log(scoreCard);
-
     res.status(200).render("matchList", {
+      status: "success",
       title: "LiveScore - IPL all matches list",
       data: matchData,
-      link: "",
-      matchlist: "All Match List",
     });
   } catch (err) {
     res.status(404).json({
